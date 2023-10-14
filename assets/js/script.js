@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 function runGame(gameType) {
 
-    //Creates two random numbers between 1 and 25
+    // Creates two random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1;
     let num2 = Math.floor(Math.random() * 25) + 1;
 
@@ -40,7 +40,7 @@ function runGame(gameType) {
 
 /**
  * Checks the answer against the first element in
- * the returned calculatedAnswer array
+ * the returned calculateCorrectAnswer array
  */
 function checkAnswer() {
 
@@ -50,8 +50,10 @@ function checkAnswer() {
 
     if (isCorrect) {
         alert("Hey! You got it right! :D");
+        incrementScore();
     } else {
-        alert(`Awww... you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`);
+        alert(`Awwww.... you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`);
+        incrementWrongAnswer();
     }
 
     runGame(calculatedAnswer[1]);
@@ -59,7 +61,7 @@ function checkAnswer() {
 }
 
 /**
- * Gets the operands (the numbers) and the operator (plus, minus, etc)
+ * Gets the operands (the numbers) and the operator (plus, minus etc)
  * directly from the dom, and returns the correct answer.
  */
 function calculateCorrectAnswer() {
@@ -77,11 +79,23 @@ function calculateCorrectAnswer() {
 
 }
 
+/**
+ * Gets the current score from the DOM and increments it by 1
+ */
 function incrementScore() {
+
+    let oldScore = parseInt(document.getElementById("score").innerText);
+    document.getElementById("score").innerText = ++oldScore;
 
 }
 
+/**
+ * Gets the current tally of incorrect answers from the DOM and increments it by 1
+ */
 function incrementWrongAnswer() {
+
+    let oldScore = parseInt(document.getElementById("incorrect").innerText);
+    document.getElementById("incorrect").innerText = ++oldScore;
 
 }
 
